@@ -30,13 +30,17 @@
             </div>
         </div>
 
-        <div id="resultSection" class="result-section" style="display:none;">
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Analyzing your plant...</p>
-            </div>
-            <div id="resultContent"></div>
-        </div>
+            <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.0/dist/mobilenet.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Handle page unload to stop camera
+        window.addEventListener('beforeunload', () => {
+            if (window.detector && window.detector.stream) {
+                window.detector.stream.getTracks().forEach(track => track.stop());
+            }
+        });
+    </script>
 
         <div class="info-section">
             <h3>ℹ️ How to use:</h3>
