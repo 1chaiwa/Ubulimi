@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Plant Disease Detector - AI for Farmers</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌱 Plant Disease Detector</h1>
+            <p>Take a photo of your plant to identify diseases instantly</p>
+        </header>
+
+        <div class="camera-section">
+            <div class="video-container" id="videoContainer">
+                <video id="video" autoplay playsinline></video>
+                <canvas id="canvas" style="display:none;"></canvas>
+                <div class="camera-overlay" id="cameraOverlay">
+                    <p>📷 Position the camera to show affected leaves clearly</p>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button id="startCameraBtn" class="btn btn-primary">📸 Start Camera</button>
+                <button id="captureBtn" class="btn btn-success" disabled>🔍 Capture & Identify</button>
+                <button id="uploadBtn" class="btn btn-secondary">📁 Upload Photo Instead</button>
+                <input type="file" id="fileInput" accept="image/*" style="display:none;">
+            </div>
+        </div>
+
+        <div id="resultSection" class="result-section" style="display:none;">
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Analyzing your plant...</p>
+            </div>
+            <div id="resultContent"></div>
+        </div>
+
+        <div class="info-section">
+            <h3>ℹ️ How to use:</h3>
+            <ol>
+                <li>Click "Start Camera" and allow camera access</li>
+                <li>Take a clear photo of the affected plant leaf</li>
+                <li>Click "Capture & Identify" or upload a photo</li>
+                <li>Get instant disease diagnosis and treatment tips</li>
+            </ol>
+            <p class="note">⚠️ Note: This is for educational purposes. For serious outbreaks, consult local agricultural experts.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.0/dist/mobilenet.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
