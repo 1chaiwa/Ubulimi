@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="AI-powered plant disease detection app for farmers - Identify crop diseases using camera">
+    <meta name="author" content="Farmers Disease Detector">
     <title>Plant Disease Detector - AI for Farmers</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.png">
 </head>
 <body>
     <div class="container">
@@ -15,42 +19,48 @@
 
         <div class="camera-section">
             <div class="video-container" id="videoContainer">
-                <video id="video" autoplay playsinline></video>
+                <video id="video" autoplay playsinline muted></video>
                 <canvas id="canvas" style="display:none;"></canvas>
                 <div class="camera-overlay" id="cameraOverlay">
-                    <p>📷 Position the camera to show affected leaves clearly</p>
+                    <p>📷 Position camera to show affected leaves clearly</p>
                 </div>
             </div>
 
             <div class="button-group">
-                <button id="startCameraBtn" class="btn btn-primary">📸 Start Camera</button>
+                <button id="startCameraBtn" class="btn btn-primary">📸 Start Back Camera</button>
                 <button id="captureBtn" class="btn btn-success" disabled>🔍 Capture & Identify</button>
                 <button id="uploadBtn" class="btn btn-secondary">📁 Upload Photo Instead</button>
-                <input type="file" id="fileInput" accept="image/*" style="display:none;">
+                <input type="file" id="fileInput" accept="image/*" capture="environment" style="display:none;">
             </div>
         </div>
 
-            <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.0/dist/mobilenet.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.18.0/dist/tf.min.js"></script>
-    <script src="script.js"></script>
-    <script>
-        // Handle page unload to stop camera
-        window.addEventListener('beforeunload', () => {
-            if (window.detector && window.detector.stream) {
-                window.detector.stream.getTracks().forEach(track => track.stop());
-            }
-        });
-    </script>
+        <div id="resultSection" class="result-section" style="display:none;">
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Analyzing your plant...</p>
+                <p class="small-text">This may take a few seconds</p>
+            </div>
+            <div id="resultContent"></div>
+        </div>
 
         <div class="info-section">
             <h3>ℹ️ How to use:</h3>
             <ol>
-                <li>Click "Start Camera" and allow camera access</li>
+                <li>Click "Start Back Camera" and allow camera access</li>
                 <li>Take a clear photo of the affected plant leaf</li>
                 <li>Click "Capture & Identify" or upload a photo</li>
                 <li>Get instant disease diagnosis and treatment tips</li>
             </ol>
-            <p class="note">⚠️ Note: This is for educational purposes. For serious outbreaks, consult local agricultural experts.</p>
+            <div class="tip-box">
+                <strong>💡 Pro Tips:</strong>
+                <ul>
+                    <li>Use natural daylight for best results</li>
+                    <li>Focus on the most affected areas</li>
+                    <li>Include both healthy and sick tissue if possible</li>
+                    <li>Hold camera steady for sharp images</li>
+                </ul>
+            </div>
+            <p class="note">⚠️ Note: This tool provides AI-assisted diagnosis. For serious outbreaks, always consult local agricultural experts.</p>
         </div>
     </div>
 
